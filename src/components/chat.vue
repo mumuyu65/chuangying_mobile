@@ -15,11 +15,11 @@
         </div>
     </div>
 
-    <div style="position:absolute; bottom:0; border:1px solid #f00; width:100%;">
-        <input class="chat-content" @keyup.enter="sendContent()" v-model="chatContent" />
-        <button class="btn btn-send" @click="sendContent()">
-            <span>发送</span>
-        </button>
+    <div style="position:absolute; bottom:0; border-top:1px solid #ececec; width:100%; height:1.2rem; padding:5px;">
+        <input class="form-control" @keyup.enter="sendContent()" v-model="chatContent" style="width:60%;display:inline-block;" />
+        <i class="icon iconfont icon-img"></i>
+        <i class="icon iconfont icon-jinlingyingcaiwangtubiao83"></i>
+        <i class="icon iconfont icon-feihangmoshi" @click="sendContent()"></i>
     </div>
 </div>
 </template>
