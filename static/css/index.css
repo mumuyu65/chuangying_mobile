@@ -1,0 +1,22 @@
+.clearfix:after{content:".";display:block;height:0;clear:both;visibility:hidden}
+.clearfix{*+height:1%;}
+.fl{
+    float: left;
+}
+.fr{
+    float: right;
+}
+
+*{
+    margin:0;
+    padding:0;
+}
+
+.zhibo{
+    position: relative;
+    padding: 0;
+    height:5.87rem;
+    width:100%;
+    text-align: center;
+    font-size: 0.48rem;
+}
