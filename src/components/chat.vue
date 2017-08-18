@@ -33,6 +33,8 @@ const api = new API();
 
 const chatUrl='http://61.147.124.143:10011';
 
+import Jsonp from 'jsonp'
+
 export default {
     name: 'chatRoom',
     data () {
@@ -53,9 +55,20 @@ export default {
     mounted (){
         this.initChat();   //判断是否登录
 
-        this.UserLevel();  //用户等级
+        this.initFace();  //初始化表情
     },
     methods:{
+        //聊天图标
+        initFace (){
+          let that =this;
+          Jsonp('https://api.weibo.com/2/emotions.json?source=1362404091',function (err, res) {
+              if(res.code ==1){
+                that.chatFaces=res.data;
+                that.UserLevel();  //用户等级
+              }
+            });
+        },
+
         initChat (){
             if(window.localStorage.getItem("clf-user")){
                 this.user=JSON.parse(window.localStorage.getItem("clf-user"));
@@ -425,7 +438,7 @@ export default {
             else if(imgArr !== -1 ){
                 value = '<img src="' + value + '"/>';
             }
-            //console.log(value);
+           //console.log(value);
 
             return value;
         },
