@@ -64,16 +64,14 @@ export default {
             }
         },
 
-
         //游客登录
         visitorLogin() {
             let that = this;
             api.visitorLogin().then(function(res) {
                 if(res.data.Code ==3){
                     //window.localStorage.setItem('clf-user',JSON.stringify(res.data.Data));
-                    that.user = JSON.stringify(res.data.Data);
-                    console.log(that.user);
-                    //that.ConnSvr();  //聊天链接
+                    that.user =res.data.Data;
+                    that.ConnSvr();  //聊天链接
                 }else{
                     alert(res.data.Msg);
                 }
@@ -117,6 +115,7 @@ export default {
         confirmUser (){
             let sid = this.user.SessionId;
             let uid = this.user.UserId;
+
 
             // 发送认证消息
             let body = '{"uid":"' + uid + '","sessionid":"' + sid + '","platform":"4"}';
@@ -323,7 +322,7 @@ export default {
                         }else{
                             roomName ='战队直播';
                         }
-                        this.showChat(date, Data.username, Data.message.inname + '进入'+roomName+'房间', Data);
+                        this.showChat(date, Data.username, Data.message.inname + '进入房间', Data);
                         break;
                 case '3':
                     this.showChat(date, Data.username, Data.message.outname + '退出房间', Data);
@@ -528,7 +527,7 @@ export default {
         left:0;
         width:100%;
         height:8.91rem;
-        border:1px solid #f00;
+        padding:10px;
     }
 
     .chat .chat-inner::-webkit-scrollbar {
