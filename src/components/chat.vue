@@ -1,7 +1,7 @@
 <template>
 <div class="chat">
-    <div class="chat-inner">
-        <div class="inner-container" >
+    <div class="chat-inner" >
+        <div class="inner-container">
             <div class="chat-item" v-for="item in chatInner">
               <ol class="list-inline" @click="sendTextTo(item)" style="cursor:pointer; display:block;">
                 <li style="vertical-align: middle">
@@ -15,11 +15,13 @@
         </div>
     </div>
 
-    <div style="position:absolute; bottom:0; border-top:1px solid #ececec; width:100%; height:1.2rem; padding:5px;">
-        <input class="form-control" @keyup.enter="sendContent()" v-model="chatContent" style="width:60%;display:inline-block;" />
-        <i class="icon iconfont icon-img"></i>
-        <i class="icon iconfont icon-jinlingyingcaiwangtubiao83"></i>
-        <i class="icon iconfont icon-feihangmoshi" @click="sendContent()"></i>
+    <div class="chat-content">
+        <input v-model="chatContent" />
+        <ol class="list-inline" style="display:inline-block; padding:0 10px;">
+            <li class="chat-icon" @click="sendImg()"><i class="icon iconfont icon-img" ></i></li>
+            <li class="chat-icon" @click="sendGift()"><i class="icon iconfont icon-jinlingyingcaiwangtubiao83"></i></li>
+            <li class="chat-icon" @click="sendContent()"><i class="icon iconfont icon-feihangmoshi"></i></li>
+        </ol>
     </div>
 </div>
 </template>
@@ -49,11 +51,9 @@ export default {
         }
     },
     mounted (){
-        this.roomNo();    //房间号列表
-
         this.initChat();   //判断是否登录
 
-        this.visitorLogin();   //游客登录
+        this.UserLevel();  //用户等级
     },
     methods:{
         initChat (){
@@ -61,8 +61,6 @@ export default {
                 this.user=JSON.parse(window.localStorage.getItem("clf-user"));
 
                 this.ConnSvr();  //聊天链接
-
-                this.UserLevel();  //用户等级
             }
         },
 
@@ -73,8 +71,9 @@ export default {
             api.visitorLogin().then(function(res) {
                 if(res.data.Code ==3){
                     //window.localStorage.setItem('clf-user',JSON.stringify(res.data.Data));
-                    //that.ConnSvr();  //聊天链接
                     that.user = JSON.stringify(res.data.Data);
+                    console.log(that.user);
+                    //that.ConnSvr();  //聊天链接
                 }else{
                     alert(res.data.Msg);
                 }
@@ -87,10 +86,7 @@ export default {
           api.userLevel().then(function(res){
                if (res.data.Code == 3) {
                     that.userLevels = res.data.Data;
-                    //水军账号登录
-                    if(that.user.Flag ==5){
-                        that.isNavy();
-                    }
+                    that.roomNo();    //房间号列表
                 }
           }).catch(function(err){
               console.log(err);
@@ -159,6 +155,7 @@ export default {
                 if(res.data.Code ==3){
                     that.templateRoom = res.data.Data.Detail;
                     console.log(that.templateRoom);
+                    that.visitorLogin();
                 }
             }).catch(function(err){
                 console.log(err);
@@ -167,7 +164,6 @@ export default {
 
         //进入房间
         enterRoom () {
-            //console.log(this.templateRoom[0]);
             let body = parseInt(this.templateRoom[0].roomno);
             let pklen = body.length + 16;
             this.ws.send(JSON.stringify({
@@ -400,7 +396,6 @@ export default {
 
         //文字始终置顶
         scrollTop (){
-    //       let t = document.getElementById('chat_inner');
             let t = document.getElementsByClassName('chat-inner')[0];
             let shit = t.scrollHeight;
             setTimeout(function(){
@@ -499,79 +494,69 @@ export default {
 </script>
 
 <style scoped>
-    .chat .chat-face-content img{
-        padding:10px;
-        cursor: pointer;
-    }
-
-    .chat>.list-inline>li{
-        padding:0;
-    }
-
-    .chat .chat-qq{
-        background-color:#2D373D;
-        padding:5px 20px;
-        font-size:18px;
-        border-radius:5px;
-        margin-right:5px;
+    .chat{
+        height:8.90rem;
+        padding:0.02rem 0;
+        margin:0.5rem 0;
     }
 
     .chat .chat-icon{
-        color:#fff;
-        font-size:14px;
-        border:1px solid #fff;
-        padding:0px 5px;
-        vertical-align:top;
-        opacity:0.6;
-        margin-right:10px;
-        margin-left:5px;
+       width:0.8rem;
+       height:0.8rem;
+       border-radius:50%;
+       background-color:#E61F1C;
+       color:#fff;
+       text-align:center;
+       line-height:0.8rem;
+       margin: 0 0.1rem;
     }
 
-    .chat .chat-icon>i{
-        vertical-align:middle;
+    .chat .chat-icon>.iconfont{
+        font-size:0.42rem;
     }
 
-    .chat .chat-face{
-        left: -5px;
-        bottom: 70px;
-        z-index: 999;
-        opacity: 1;
-    }
-
-    .chat .skin-icon{
+    .chat .chat-inner{
+        width:100%;
         position:relative;
-        width:70px;
-        height:30px;
-        margin:10px;
-        display:inline-block;
-        opacity:1.0;
-        cursor:pointer;
+        overflow-x: hidden;
+        overflow-y:scroll;
+        height:100%;
     }
 
-    .chat .skin-icon:hover{
-        opacity:0.6;
+    .chat .chat-inner .inner-container{
+        position: absolute;
+        left:0;
+        width:100%;
+        height:8.91rem;
+        border:1px solid #f00;
     }
 
-    .chat-img .chat-face-inner{
-        background: rgba(0,0,0,0.7);
+    .chat .chat-inner::-webkit-scrollbar {
+        display: none;
     }
 
-    .chat-img .chat-face-inner>.list-inline>li{
-        padding:5px 10px;
-        cursor:pointer;
+    .chat .chat-inner::-moz-scrollbar {
+        display: none;
     }
 
-    .chat-img .chat-face-inner>.list-inline>li.active{
-        padding:5px 10px;
-        background-color:#d1201d;
+    .chat .chat-content{
+        max-width:750px;
+        margin:0 auto;
+        position:absolute;
+        bottom:0;
+        border-top:1px solid #ececec;
+        width:100%;
+        height:1.2rem;
+        padding:0 5px;
     }
 
-    .chat-img img{
-        width: 87px;
-        height: 87px;
-        margin: 5px;
-        padding: 0;
-        display: inline-block;
-        vertical-align: middle;
+    .chat .chat-content>input{
+        border-radius:4px;
+        outline:0;
+        border: 1px solid #ccc;
+        padding:6px;
+        width:60%;
+        height:0.8rem;
+        margin:0.2rem 0;
     }
 </style>
