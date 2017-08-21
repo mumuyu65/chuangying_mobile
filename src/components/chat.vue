@@ -16,8 +16,8 @@
     </div>
 
     <div class="chat-content">
-        <input v-model="chatContent" />
-        <ol class="list-inline" style="display:inline-block; padding:0 10px;">
+        <input v-model="chatContent" placeholder="输入聊天内容"/>
+        <ol class="list-inline">
             <li class="chat-icon" @click="sendImg()"><i class="icon iconfont icon-img" ></i></li>
             <li class="chat-icon" @click="sendGift()"><i class="icon iconfont icon-jinlingyingcaiwangtubiao83"></i></li>
             <li class="chat-icon" @click="sendContent()"><i class="icon iconfont icon-feihangmoshi"></i></li>
