@@ -129,7 +129,8 @@ export default {
             let that = this;
             api.visitorLogin().then(function(res) {
                 if(res.data.Code ==3){
-                    //window.localStorage.setItem('clf-user',JSON.stringify(res.data.Data));
+                    $.cookie('mobile-user', JSON.stringify(res.data.Data));
+                    //console.log(JSON.stringify(res.data.Data));
                     that.user =res.data.Data;
                     that.ConnSvr();  //聊天链接
                 }else{
@@ -552,8 +553,8 @@ export default {
 
         ImgSelect(item){
             this.showImg = !this.showImg;
-            if(window.localStorage.getItem("clf-user")){
-                let Flag = JSON.parse(window.localStorage.getItem("clf-user")).Flag;
+            if($.cookie("mobile-user")){
+                let Flag = JSON.parse($.cookie("mobile-user")).Flag;
                 let chat_content;
                 if(parseInt(Flag)==-1){
                     chat_content={
