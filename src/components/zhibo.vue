@@ -10,7 +10,7 @@ export default {
   },
   methods:{
     initData(){
-        let flashvars={
+      let flashvars={
             f:'http://img.ksbbs.com/asset/Mon_1605/0ec8cc80112a2d6.mp4',//视频地址
             a:'',//调用时的参数，只有当s>0的时候有效
             s:'0',//调用方式，0=普通方法（f=视频地址），1=网址形式,2=xml形式，3=swf形式(s>0时f=网址，配合a来完成对地址的组装)
@@ -45,7 +45,7 @@ export default {
             my_url:encodeURIComponent(window.location.href)//本页面地址
             //调用自定义播放器参数结束
           };
-      let params={bgcolor:'#FFF',allowFullScreen:true,allowScriptAccess:'always',wmode:'transparent'};
+      let params={bgcolor:'#FFF',allowFullScreen:false,allowScriptAccess:'always',wmode:'transparent'};
 
       let video=['http://img.ksbbs.com/asset/Mon_1605/0ec8cc80112a2d6.mp4->video/mp4'];
 

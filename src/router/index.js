@@ -7,10 +7,21 @@ import Index from '@/pages/index'
 
 import Chat from '@/components/chat'
 
+import Login from '@/pages/login'
+
 export default new Router({
-  routes: [{
-    path: '/',
-    name: 'chat',
-    component: Chat
-  }],
+    routes: [{
+        path: '/',
+        name: 'index',
+        component: Index,
+        children: [{
+            path: '/chat',
+            name: 'chat',
+            component: Chat
+        }]
+    }, {
+        path: '/login',
+        name: 'login',
+        component: Login
+    }],
 });
