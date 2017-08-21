@@ -573,6 +573,7 @@ export default {
                 }
                 this.chatInner.push(chat_content);
                 this.sendText(item.imgurl);
+                this.scrollTop();
             }else{
                 alert("未登录，不可以发送图片!");
             }
