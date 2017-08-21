@@ -1,6 +1,13 @@
 <template>
   <div class="app">
     <zhibo></zhibo>
+    <div class="login" style="position:absolute; top:1.20rem; right:10px; color:#fff;z-index:222;">
+      <ul class="list-unstyled">
+        <li style="margin-bottom:5px; background-color:rgba(46,55,72,0.5); padding:5px;border-radius:50%;"><i class="icon iconfont icon-yonghu" style="padding:2px;border:1px solid #fff; border-radius:50%;"></i></li>
+        <li style="margin-bottom:5px; background-color:rgba(46,55,72,0.5); padding:5px;border-radius:50%;"><i class="icon iconfont icon-yuyin" style="padding:2px;border:1px solid #fff; border-radius:50%;"></i></li>
+        <li style="margin-bottom:5px; background-color:rgba(46,55,72,0.5); padding:5px;border-radius:50%;"><i class="icon iconfont icon-huanyuansuofang" style="padding:2px;border:1px solid #fff; border-radius:50%;"></i></li>
+      </ul>
+    </div>
     <ul class="chat-tab">
       <li><router-link to="/">聊天</router-link></li>
       <li><a href="javascript:void(0)">专家一对一</a></li>
@@ -22,7 +29,7 @@ export default {
   methods:{
     economics(){
       alert('开发中....');
-    }
+    },
   }
 }
 </script>
