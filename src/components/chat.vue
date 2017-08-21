@@ -16,9 +16,22 @@
     </div>
 
     <div class="chat-content">
-        <input v-model="chatContent" placeholder="输入聊天内容"/>
+        <input v-model="chatContent" placeholder="输入聊天内容" @keyup.enter="sendContent()"/>
         <ol class="list-inline">
-            <li class="chat-icon" @click="sendImg()"><i class="icon iconfont icon-img" ></i></li>
+            <li class="chat-icon" @click="toggleImg()"><i class="icon iconfont icon-img" ></i></li>
+            <li class="chat-face chat-img" v-show="showImg" >
+                <div class="chat-face-inner" style="background:rgba(0,0,0,0.7)">
+                    <ol class="list-inline" style="width:100%">
+                        <li v-bind:class="{active:item.active}" v-for="item in chatImgTitle" @click="changeImgTab(item)">
+                            {{item.title}}
+                        </li>
+                        <li class="active pull-right" @click="toggleImg()">关闭</li>
+                    </ol>
+                    <div class="chat-face-content" style="padding-bottom: 50px;">
+                      <img v-bind:src="face.imgurl" v-for="face in chatImgs" @click="ImgSelect(face)" />
+                    </div>
+                </div>
+            </li>
             <li class="chat-icon" @click="sendGift()"><i class="icon iconfont icon-jinlingyingcaiwangtubiao83"></i></li>
             <li class="chat-icon" @click="sendContent()"><i class="icon iconfont icon-feihangmoshi"></i></li>
         </ol>
@@ -50,12 +63,19 @@ export default {
           showImg:false,  //聊天图片
           chatImgs:[],
           templateRoom:'',  //直播房间号
+          showImg:false,  //聊天图片
+          chatImgTitle:[
+            {id:1,title:'礼物',active:false},{id:2,title:'自创',active:false},
+            {id:3,title:'逗你玩',active:false},{id:4,title:'欢喜兔',active:false},
+            {id:5,title:'阿呆',active:false}],
+
+          chatImgs:[],  //聊天图片
         }
     },
     mounted (){
         this.initChat();   //判断是否登录
 
-        this.initFace();  //初始化表情
+        this.initFace();  //初始化图片
     },
     methods:{
         //聊天图标
@@ -67,6 +87,33 @@ export default {
                 that.UserLevel();  //用户等级
               }
             });
+
+
+            //聊天图片
+            api.chatImage().then(function(res){
+                if(res.data.Code ==3){
+                    that.templeChatImgs = res.data.Data;
+                    that.changeImgTab(that.chatImgTitle[0]);
+                }else{
+                    alert("加载聊天图片不成功！");
+                }
+            }).catch(function(err){
+                console.log(err);
+            });
+        },
+
+        changeImgTab(item){
+            for(let i =0; i<this.chatImgTitle.length;i++){
+                this.chatImgTitle[i].active = false;
+            }
+            item.active = !item.active;
+            let temp_title = item.title;
+            this.chatImgs = [];
+            for(let i=0; i<this.templeChatImgs.length; i++){
+                if(this.templeChatImgs[i].title ==temp_title ){
+                    this.chatImgs.push(this.templeChatImgs[i]);
+                }
+            }
         },
 
         initChat (){
@@ -251,8 +298,7 @@ export default {
 
         //发送内容
         sendContent (){
-           if(window.localStorage.getItem("clf-user")){
-                if(this.chatContent){
+           if(this.chatContent){
                     this.sendText(this.chatContent);
 
                     let tempLevel = this.userLevels.length;
@@ -287,9 +333,6 @@ export default {
                 }else{
                     alert("输入的内容不能为空！");
                 }
-           }else{
-              $("#loginModal").modal("show");
-           }
         },
 
         //发送消息
@@ -500,6 +543,44 @@ export default {
             }).catch(function(err){
                 console.log(err);
             });
+        },
+
+        //开启或关闭聊天图片
+        toggleImg(){
+            this.showImg = !this.showImg;
+        },
+
+        ImgSelect(item){
+            this.showImg = !this.showImg;
+            if(window.localStorage.getItem("clf-user")){
+                let Flag = JSON.parse(window.localStorage.getItem("clf-user")).Flag;
+                let chat_content;
+                if(parseInt(Flag)==-1){
+                    chat_content={
+                        userlog:this.userLevels[10].role_css,
+                        name:this.user.Nick,
+                        text:this.ImgTrans(item.imgurl),
+                        date:this.dateStamp(new Date())
+                    };
+                }else{
+                    chat_content={
+                        userlog:this.userLevels[this.user.Level].role_css,
+                        name:this.user.Nick,
+                        text:this.ImgTrans(item.imgurl),
+                        date:this.dateStamp(new Date())
+                    };
+                }
+                this.chatInner.push(chat_content);
+                this.sendText(item.imgurl);
+            }else{
+                alert("未登录，不可以发送图片!");
+            }
+        },
+
+
+        //发送礼物
+        sendGift(){
+
         },
     },
 }

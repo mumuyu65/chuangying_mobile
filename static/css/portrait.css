@@ -59,14 +59,13 @@
     border: 1px solid #ccc;
     padding:6px;
     width:60%;
-    height:0.7rem;
+    height:0.8rem;
     margin:0.2rem 0;
 }
 
 .chat .chat-content .list-inline{
   display:inline-block;
   padding:0 10px;
-  float:right;
   margin-top:5px;
 }
 
@@ -94,4 +93,45 @@
 
 .app .app-icon>li.login{
   display:inline-block;
+}
+
+.chat .chat-face {
+    position: absolute;
+    width: 100%;
+    height: 130px;
+    left:0px;
+    bottom: 1.2rem;
+    overflow: hidden;
+    color:#fff;
+}
+
+.chat .chat-face .chat-face-inner {
+    position: relative;
+    width: 100%;
+    height: 99.9%;
+    overflow: hidden;
+    background-color: #fff;
+}
+
+.chat .chat-face .chat-face-inner .chat-face-content {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+.chat-img .chat-face-inner>.list-inline>li.active{
+    padding: 5px 10px;
+    background-color: #E61F1C;
+}
+
+.chat-img img{
+    width: 50px;
+    height: 50px;
+    margin: 5px;
+    padding: 0;
+    display: inline-block;
+    vertical-align: middle;
 }
