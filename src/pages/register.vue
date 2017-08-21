@@ -1,14 +1,14 @@
 <template>
   <div class="ydd-login" style="padding:20px;">
-    <router-link to="/chat"><i class="icon iconfont icon-fanhui1" style="color:#E61F1C"></i></router-link>
+    <router-link to="/login"><i class="icon iconfont icon-fanhui1" style="color:#E61F1C"></i></router-link>
     <div class="container text-center">
-      <input type="text" value="" v-model="username" class="form-control" placeholder="用户名"/>
-      <input type="password" value="" v-model="pwd" class="form-control" placeholder="密码"/>
-      <router-link to="/reset" class="pull-left" style="color:#E61F1C">忘记密码?</router-link>
-      <router-link to="/register" class="pull-right" style="color:#E61F1C">注册?</router-link>
+      <input type="text" value="" v-model="username" placeholder="输入手机号" class="form-control"/>
+      <input type="password" value="" v-model="pwd"  placeholder="输入验证码" class="form-control"/>
+      <input type="password" value="" v-model="pwd"  placeholder="用户昵称" class="form-control"/>
+      <input type="password" value="" v-model="pwd"  placeholder="输入密码" class="form-control"/>
     </div>
     <div class="container text-center">
-      <input type="submit" class="form-control" @click="login()" value="登  录"
+      <input type="submit" class="form-control" @click="doRegister()" value="注   册"
         style="background-color:#E61F1C; color:#fff;border:1px solid #E61F1C;">
     </div>
   </div>
@@ -57,6 +57,7 @@ export default {
     width:90%;
     margin:0 auto;
     margin-top:30%;
+    position:relative;
     height:20%;
   }
 

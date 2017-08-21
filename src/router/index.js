@@ -9,6 +9,10 @@ import Chat from '@/components/chat'
 
 import Login from '@/pages/login'
 
+import Register from '@/pages/register'
+
+import Reset from '@/pages/reset'
+
 export default new Router({
     routes: [{
         path: '/',
@@ -23,5 +27,13 @@ export default new Router({
         path: '/login',
         name: 'login',
         component: Login
+    }, {
+        path: '/register',
+        name: 'register',
+        component: Register
+    }, {
+        path: '/reset',
+        name: 'reset',
+        component: Reset
     }],
 });
