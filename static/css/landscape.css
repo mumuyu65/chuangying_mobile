@@ -77,3 +77,24 @@
 .chat .chat-icon>.iconfont{
     font-size:0.42rem;
 }
+
+.app .chat-tab{
+    display:none;
+}
+
+.app .app-icon>li{
+  margin-bottom:5px;
+  background-color:rgba(46,55,72,0.5);
+  padding:5px;
+  border-radius:50%;
+}
+
+.app .app-icon>li>i{
+  padding:2px;
+  border:1px solid #fff;
+  border-radius:50%;
+}
+
+.app .app-icon>li.login{
+  display:none;
+}

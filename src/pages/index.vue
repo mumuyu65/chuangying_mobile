@@ -1,10 +1,12 @@
 <template>
   <div class="index">
     <zhibo></zhibo>
-    <div class="login" style="position:absolute; top:1.30rem; right:10px; color:#fff;z-index:222;">
+    <div style="position:absolute; top:1.30rem; right:10px; color:#fff;z-index:222;">
       <ul class="list-unstyled app-icon">
-        <li><i class="icon iconfont icon-yonghu" @click="showLogin()"></i></li>
-        <li><i class="icon iconfont icon-yuyin" @click="setVolume()" v-if="volume"></i><i class="icon iconfont icon-yuyin" @click="changeVolume()" v-if="!volume"></i></li>
+        <li class="login"><i class="icon iconfont icon-yonghu" @click="showLogin()"></i></li>
+        <li><i class="icon iconfont icon-yuyin" @click="setVolume()" v-if="volume"></i>
+            <i class="icon iconfont icon-yuyin" @click="changeVolume()" v-if="!volume"></i>
+        </li>
       </ul>
     </div>
     <ul class="chat-tab">
@@ -63,15 +65,6 @@ export default {
 </script>
 
 <style>
-  .app .chat-tab{
-    margin:0;
-    width:100%;
-    height:1.07rem;
-    line-height:1.07rem;
-    background-color:#E61F1C;
-    position:relative;
-  }
-
   .app .router-link-active{
     text-decoration:none;
     background-color:#BD0C08;
@@ -97,18 +90,5 @@ export default {
     width:1.67rem;
     background-color:#E8A32A;
     color:#fff;
-  }
-
-  .app .app-icon>li{
-    margin-bottom:5px;
-    background-color:rgba(46,55,72,0.5);
-    padding:5px;
-    border-radius:50%;
-  }
-
-  .app .app-icon>li>i{
-    padding:2px;
-    border:1px solid #fff;
-    border-radius:50%;
   }
 </style>
