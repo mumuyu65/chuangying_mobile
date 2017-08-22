@@ -64,6 +64,7 @@ export default {
       typeVcode:true,
       seconds:60,
       timer:'',
+      appIcon:false,
     }
   },
   methods: {

@@ -2,7 +2,7 @@
   <div class="ydd-login">
     <header>
        <div class="text-center">
-         <router-link to="/chat" class="pull-left"><i class="icon iconfont icon-fanhui1" style="color:#fff; font-weight:500;"></i></router-link>
+         <router-link to="/" class="pull-left"><i class="icon iconfont icon-fanhui1" style="color:#fff; font-weight:500;"></i></router-link>
          <span style="font-size:16px;">登录</span>
        </div>
     </header>
@@ -37,7 +37,8 @@ export default {
   data () {
     return {
       username: '',
-      pwd: ''
+      pwd: '',
+      appIcon:false,
     }
   },
   methods: {
