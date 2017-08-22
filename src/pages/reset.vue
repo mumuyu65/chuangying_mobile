@@ -1,14 +1,36 @@
 <template>
-  <div class="ydd-login" style="padding:20px;">
-    <router-link to="/login"><i class="icon iconfont icon-fanhui1" style="color:#E61F1C"></i></router-link>
+  <div class="ydd-login">
+    <header>
+      <div class="text-center">
+         <router-link to="/login" class="pull-left"><i class="icon iconfont icon-fanhui1" style="color:#fff; font-weight:500;"></i></router-link>
+         <span style="font-size:16px;">修改密码</span>
+       </div>
+    </header>
     <div class="container text-center">
-      <input type="text" value="" v-model="username" placeholder="输入手机号" class="form-control"/>
-      <input type="password" value="" v-model="pwd"  placeholder="输入验证码" class="form-control"/>
-      <input type="password" value="" v-model="pwd"  placeholder="输入密码" class="form-control"/>
+      <div class="" style="border-bottom:1px solid #ececec;padding:10px 0; margin-bottom:10px;" >
+        <i class="icon iconfont icon-shouji" style="font-size:25px;color:#e61f1c"></i>
+        <label style="font-size:16px; vertical-align:top; padding-top:5px;">手机号</label>
+        <input type="text" value="" v-model="phone"
+          style="border:1px solid transparent; height:30px; margin-left:20px; vertical-align:top;" placeholder="请输入您的手机号"/>
+      </div>
+      <div class="" style="border-bottom:1px solid #ececec;padding:10px 0; margin-bottom:10px;" >
+        <i class="icon iconfont icon-yanzhengma" style="font-size:25px;color:#e61f1c"></i>
+        <label style="font-size:16px; vertical-align:top; padding-top:5px;">验证码</label>
+        <input type="text" value="" v-model="vcode"
+          style="border:1px solid transparent; height:30px; margin-left:20px; vertical-align:top;"
+          placeholder="请输入您的验证码"/>
+      </div>
+      <div class="" style="border-bottom:1px solid #ececec;padding:10px 0; margin-bottom:10px;" >
+        <i class="icon iconfont icon-suo" style="font-size:25px;color:#e61f1c"></i>
+        <label style="font-size:16px; vertical-align:top; padding-top:5px;">密&nbsp;&nbsp;&nbsp;&nbsp;码</label>
+        <input type="text" value="" v-model="pwd"
+          style="border:1px solid transparent; height:30px; margin-left:20px; vertical-align:top;"
+          placeholder="请输入您的密码"/>
+      </div>
     </div>
     <div class="container text-center">
       <input type="submit" class="form-control" @click="doRegister()" value="修改密码"
-        style="background-color:#E61F1C; color:#fff;border:1px solid #E61F1C;">
+        style="background-color:#E61F1C; color:#fff;border:1px solid #E61F1C; width:50%; margin:0 auto; border-radius:35px;">
     </div>
   </div>
 </template>
@@ -55,7 +77,7 @@ export default {
   .ydd-login .container{
     width:90%;
     margin:0 auto;
-    margin-top:30%;
+    margin-top:10%;
     position:relative;
     height:20%;
   }

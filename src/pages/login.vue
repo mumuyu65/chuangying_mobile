@@ -1,15 +1,30 @@
 <template>
-  <div class="ydd-login" style="padding:20px;">
-    <router-link to="/chat"><i class="icon iconfont icon-fanhui1" style="color:#E61F1C"></i></router-link>
+  <div class="ydd-login">
+    <header>
+       <div class="text-center">
+         <router-link to="/chat" class="pull-left"><i class="icon iconfont icon-fanhui1" style="color:#fff; font-weight:500;"></i></router-link>
+         <span style="font-size:16px;">登录</span>
+       </div>
+    </header>
     <div class="container text-center">
-      <input type="text" value="" v-model="username" class="form-control" placeholder="用户名"/>
-      <input type="password" value="" v-model="pwd" class="form-control" placeholder="密码"/>
-      <router-link to="/reset" class="pull-left" style="color:#E61F1C">忘记密码?</router-link>
-      <router-link to="/register" class="pull-right" style="color:#E61F1C">注册?</router-link>
+      <div class="" style="border-bottom:1px solid #ececec;padding:10px 0; margin-bottom:10px;" >
+        <i class="icon iconfont icon-shouji" style="font-size:25px;color:#e61f1c"></i>
+        <label style="font-size:16px; vertical-align:top; padding-top:5px;">用户名</label>
+        <input type="text" value="" v-model="username"
+          style="border:1px solid transparent; height:30px; margin-left:20px; vertical-align:top;" placeholder="请输入您的手机号"/>
+      </div>
+      <div style="border-bottom:1px solid #ececec;padding:10px 0; margin-bottom:10px;">
+        <i class="icon iconfont icon-suo" style="font-size:25px;color:#e61f1c"></i>
+        <label style="font-size:16px;">密&nbsp;&nbsp;&nbsp;&nbsp;码</label>
+        <input type="password" value="" v-model="pwd"
+          style="border:1px solid transparent; height:30px; margin-left:20px;"    placeholder="请输入您的密码"/>
+      </div>
+      <router-link to="/register" class="pull-left" style="color:#000;">注册新用户</router-link>
+      <router-link to="/reset" class="pull-right" style="color:#000;">忘记密码</router-link>
     </div>
     <div class="container text-center">
       <input type="submit" class="form-control" @click="login()" value="登  录"
-        style="background-color:#E61F1C; color:#fff;border:1px solid #E61F1C;">
+        style="background-color:#E61F1C; color:#fff;border:1px solid #E61F1C; border-radius:35px; width:50%; margin:0 auto;">
     </div>
   </div>
 </template>
@@ -56,7 +71,7 @@ export default {
   .ydd-login .container{
     width:90%;
     margin:0 auto;
-    margin-top:30%;
+    margin-top:10%;
     height:20%;
   }
 

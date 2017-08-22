@@ -32,7 +32,15 @@
                     </div>
                 </div>
             </li>
-            <li class="chat-icon" @click="sendGift()"><i class="icon iconfont icon-jinlingyingcaiwangtubiao83"></i></li>
+            <li class="chat-icon" @click="toggleGift()"><i class="icon iconfont icon-jinlingyingcaiwangtubiao83"></i></li>
+            <li class="chat-face chat-img chat-gift" v-show="showGift" >
+                <div class="chat-face-inner" style="background:rgba(0,0,0,0.7);padding:0 10px;">
+                    <h5 style="text-align:end;"><span @click="toggleGift()" style="padding: 5px 10px;background-color: #E61F1C;">关闭</span></h5>
+                    <div class="chat-face-content" style="padding-bottom: 50px;">
+                      <img v-bind:src="gift.imgurl" v-for="gift in chatGifts" @click="GiftSelect(gift)" />
+                    </div>
+                </div>
+            </li>
             <li class="chat-icon" @click="sendContent()"><i class="icon iconfont icon-feihangmoshi"></i></li>
         </ol>
     </div>
@@ -70,6 +78,13 @@ export default {
             {id:5,title:'阿呆',active:false}],
 
           chatImgs:[],  //聊天图片
+
+          showGift:false,  //聊天礼物
+          chatGifts:[{id:1,imgurl:'../../static/images/gifts/baoxiang.png'},
+          {id:2,imgurl:'../../static/images/gifts/caishen.png'},{id:3,imgurl:'../../static/images/gifts/car.png'},
+          {id:4,imgurl:'../../static/images/gifts/huangguan.png'},{id:5,imgurl:'../../static/images/gifts/jinyuanbao.png'},
+          {id:6,imgurl:'../../static/images/gifts/qiandai.png'},{id:7,imgurl:'../../static/images/gifts/rose.png'},
+          {id:8,imgurl:'../../static/images/gifts/zhuanshi.png'}],
         }
     },
     mounted (){
@@ -578,6 +593,41 @@ export default {
                 alert("未登录，不可以发送图片!");
             }
         },
+
+        //开启或关闭聊天礼物
+        toggleGift(){
+            this.showGift = !this.showGift;
+        },
+
+        GiftSelect(item){
+            this.showGift= !this.showGift;
+            if($.cookie("mobile-user")){
+                let Flag = JSON.parse($.cookie("mobile-user")).Flag;
+                let chat_content;
+                if(parseInt(Flag)==-1){
+                    chat_content={
+                        userlog:this.userLevels[10].role_css,
+                        name:this.user.Nick,
+                        text:this.ImgTrans(item.imgurl),
+                        date:this.dateStamp(new Date())
+                    };
+                }else{
+                    chat_content={
+                        userlog:this.userLevels[this.user.Level].role_css,
+                        name:this.user.Nick,
+                        text:this.ImgTrans(item.imgurl),
+                        date:this.dateStamp(new Date())
+                    };
+                }
+                this.chatInner.push(chat_content);
+                let message=this.ImgTrans(item.imgurl).toString();
+                this.sendText(this.ImgTrans(item.imgurl));
+                this.scrollTop();
+            }else{
+                alert("未登录，不可以发送图片!");
+            }
+        },
+
 
 
         //发送礼物
