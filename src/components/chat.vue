@@ -132,33 +132,38 @@ export default {
         },
 
         initChat (){
-            if(parseInt(JSON.parse($.cookie("mobile-user")).Flag)!== -1){
-                this.user=JSON.parse($.cookie("mobile-user"));
+            if($.cookie("mobile-user")){
+               if(parseInt(JSON.parse($.cookie("mobile-user")).Flag)!== -1){
+                    this.user=JSON.parse($.cookie("mobile-user"));
 
-                let params={
-                    begidx:0,
-                    counts:10
-                };
+                    let params={
+                        begidx:0,
+                        counts:10
+                    };
 
-                let that = this;
+                    let that = this;
 
-                api.roomNum(params).then(function(res){
-                    if(res.data.Code ==3){
-                        that.templateRoom = res.data.Data.Detail;
-                        api.userLevel().then(function(res){
-                           if (res.data.Code == 3) {
-                                that.userLevels = res.data.Data;
+                    api.roomNum(params).then(function(res){
+                        if(res.data.Code ==3){
+                            that.templateRoom = res.data.Data.Detail;
+                            api.userLevel().then(function(res){
+                               if (res.data.Code == 3) {
+                                    that.userLevels = res.data.Data;
 
-                                that.ConnSvr();
-                            }
-                      }).catch(function(err){
-                          console.log(err);
-                        });
-                    }
-                }).catch(function(err){
-                    console.log(err);
-                });
-            }else{
+                                    that.ConnSvr();
+                                }
+                          }).catch(function(err){
+                              console.log(err);
+                            });
+                        }
+                    }).catch(function(err){
+                        console.log(err);
+                    });
+                }else{
+                    this.initFace();
+                }
+            }
+            else{
                  this.initFace();  //初始化图片
             }
         },

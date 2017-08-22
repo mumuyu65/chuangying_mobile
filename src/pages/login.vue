@@ -53,7 +53,7 @@ export default {
       let that = this;
       response.then(function(res){
           if(res.data.Code ==3){
-            that.$router.push('/chat');
+            window.location.replace("#/");
 
             $.cookie('mobile-user',JSON.stringify(res.data.Data));
 
