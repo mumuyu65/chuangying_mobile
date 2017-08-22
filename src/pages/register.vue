@@ -113,7 +113,7 @@ export default {
             },1000);
             $.post(env.baseUrl+'/cycj/vcode/get',params,function(res){
                 if(res.Code ==3){
-                    alert('发送成功！');
+                    console.log('发送成功！');
                 }else{
                     alert(res.Msg);
                 }
