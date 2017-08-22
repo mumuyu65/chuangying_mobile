@@ -152,3 +152,45 @@ header{
   line-height:1.76rem;
   padding:0 10px;
 }
+
+.ydd-login .container{
+  width:90%;
+  margin:0 auto;
+  margin-top:10%;
+  height:20%;
+}
+
+.ydd-login .form-control{
+  margin-bottom:10px;
+}
+
+.ydd-login .login-item{
+  border-bottom:1px solid #ececec;
+  padding:10px 0;
+  margin-bottom:10px;
+  position: relative;
+}
+
+.ydd-login .login-item .icon.iconfont{
+  font-size:25px;
+  color:#e61f1c;
+}
+
+.ydd-login .login-item label{
+  font-size:16px;
+  vertical-align:top;
+  padding-top:5px;
+}
+
+.ydd-login .login-item>input{
+  border:1px solid transparent;
+  height:30px;
+  margin-left:20px;
+  vertical-align:top;
+  outline:none;
+  width:150px;
+}
+
+.ydd-login .login-item>input:focus{
+    border:1px solid transparent;
+}

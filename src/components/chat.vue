@@ -54,6 +54,8 @@ const api = new API();
 
 const chatUrl='http://61.147.124.143:10011';
 
+import { mapGetters } from 'vuex'
+
 import Jsonp from 'jsonp'
 
 export default {
@@ -91,6 +93,12 @@ export default {
         this.initChat();   //判断是否登录
 
         this.initFace();  //初始化图片
+    },
+    computed: mapGetters({
+          isLogin:'getLogin',
+    }),
+    watch:{
+        isLogin:'changeUser',
     },
     methods:{
         //聊天图标
@@ -136,6 +144,14 @@ export default {
                 this.user=JSON.parse(window.localStorage.getItem("clf-user"));
 
                 this.ConnSvr();  //聊天链接
+            }
+        },
+
+        //游客变为会员登录
+        changeUser(){
+            if(this.isLogin){
+               this.user=JSON.parse($.cookie("mobile-user"));
+               this.confirmUser();  //聊天链接
             }
         },
 
@@ -627,8 +643,6 @@ export default {
                 alert("未登录，不可以发送图片!");
             }
         },
-
-
 
         //发送礼物
         sendGift(){

@@ -1,7 +1,7 @@
 <template>
   <div class="index">
     <zhibo></zhibo>
-    <div style="position:absolute; top:1.30rem; right:10px; color:#fff;z-index:222;">
+    <div style="position:absolute; top:2.50rem; right:10px; color:#fff;z-index:222;">
       <ul class="list-unstyled app-icon">
         <li class="login"><i class="icon iconfont icon-yonghu" @click="showLogin()"></i></li>
         <li><i class="icon iconfont icon-yuyin" @click="setVolume()" v-if="volume"></i>

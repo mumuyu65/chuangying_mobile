@@ -7,25 +7,21 @@
        </div>
     </header>
     <div class="container text-center">
-      <div class="" style="border-bottom:1px solid #ececec;padding:10px 0; margin-bottom:10px;" >
-        <i class="icon iconfont icon-shouji" style="font-size:25px;color:#e61f1c"></i>
-        <label style="font-size:16px; vertical-align:top; padding-top:5px;">手机号</label>
-        <input type="text" value="" v-model="phone"
-          style="border:1px solid transparent; height:30px; margin-left:20px; vertical-align:top;" placeholder="请输入您的手机号"/>
+      <div class="login-item" >
+        <i class="icon iconfont icon-shouji"></i>
+        <label>手机号</label>
+        <input type="text" value="" v-model="phone" placeholder="请输入手机号"/>
       </div>
-      <div class="" style="border-bottom:1px solid #ececec;padding:10px 0; margin-bottom:10px;" >
-        <i class="icon iconfont icon-yanzhengma" style="font-size:25px;color:#e61f1c"></i>
-        <label style="font-size:16px; vertical-align:top; padding-top:5px;">验证码</label>
-        <input type="text" value="" v-model="vcode"
-          style="border:1px solid transparent; height:30px; margin-left:20px; vertical-align:top;"
-          placeholder="请输入您的验证码"/>
+      <div class="login-item">
+        <i class="icon iconfont icon-yanzhengma"></i>
+        <label>验证码</label>
+        <input type="text" value="" v-model="vcode" placeholder="请输入验证码"/>
+        <span style="position:absolute; right:0; top:10px; font-size:10px; padding:5px 8px; background-color:#e61f1c; color:#fff; border-radius:15px;">发送验证码</span>
       </div>
-      <div class="" style="border-bottom:1px solid #ececec;padding:10px 0; margin-bottom:10px;" >
-        <i class="icon iconfont icon-suo" style="font-size:25px;color:#e61f1c"></i>
-        <label style="font-size:16px; vertical-align:top; padding-top:5px;">密&nbsp;&nbsp;&nbsp;&nbsp;码</label>
-        <input type="text" value="" v-model="pwd"
-          style="border:1px solid transparent; height:30px; margin-left:20px; vertical-align:top;"
-          placeholder="请输入您的密码"/>
+      <div class="login-item">
+        <i class="icon iconfont icon-suo"></i>
+        <label>密&nbsp;&nbsp;&nbsp;&nbsp;码</label>
+        <input type="text" value="" v-model="pwd" placeholder="请输入密码"/>
       </div>
     </div>
     <div class="container text-center">
