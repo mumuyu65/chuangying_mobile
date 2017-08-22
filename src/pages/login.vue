@@ -56,8 +56,6 @@ export default {
 
             $.cookie('mobile-user',JSON.stringify(res.data.Data));
 
-            that.$store.dispatch("changeLogin",true);
-
           }else{
             alert(res.data.Msg);
           }

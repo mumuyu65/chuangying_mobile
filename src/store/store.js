@@ -13,7 +13,7 @@ Vue.use(Vuex)
 const state = {
     isLogin: false,
     user: {}
-}
+};
 
 export default new Vuex.Store({
     state,

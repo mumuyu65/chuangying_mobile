@@ -91,14 +91,6 @@ export default {
     },
     mounted (){
         this.initChat();   //判断是否登录
-
-        this.initFace();  //初始化图片
-    },
-    computed: mapGetters({
-          isLogin:'getLogin',
-    }),
-    watch:{
-        isLogin:'changeUser',
     },
     methods:{
         //聊天图标
@@ -140,10 +132,34 @@ export default {
         },
 
         initChat (){
-            if(window.localStorage.getItem("clf-user")){
-                this.user=JSON.parse(window.localStorage.getItem("clf-user"));
+            if(parseInt(JSON.parse($.cookie("mobile-user")).Flag)!== -1){
+                this.user=JSON.parse($.cookie("mobile-user"));
 
-                this.ConnSvr();  //聊天链接
+                let params={
+                    begidx:0,
+                    counts:10
+                };
+
+                let that = this;
+
+                api.roomNum(params).then(function(res){
+                    if(res.data.Code ==3){
+                        that.templateRoom = res.data.Data.Detail;
+                        api.userLevel().then(function(res){
+                           if (res.data.Code == 3) {
+                                that.userLevels = res.data.Data;
+
+                                that.ConnSvr();
+                            }
+                      }).catch(function(err){
+                          console.log(err);
+                        });
+                    }
+                }).catch(function(err){
+                    console.log(err);
+                });
+            }else{
+                 this.initFace();  //初始化图片
             }
         },
 
@@ -245,7 +261,6 @@ export default {
             api.roomNum(params).then(function(res){
                 if(res.data.Code ==3){
                     that.templateRoom = res.data.Data.Detail;
-                    console.log(that.templateRoom);
                     that.visitorLogin();
                 }
             }).catch(function(err){
