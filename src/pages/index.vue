@@ -14,7 +14,7 @@
       <li><a class="active">聊天</a></li>
       <li @click="callQQ()"><a>专家一对一</a></li>
       <li><a href="javascript:void(0)" @click="economics()">金融说天下</a></li>
-      <li class="customer text-center" style="line-height:0.7rem;" @click="callQQ()">
+      <li @click="callQQ()" class="customer text-center" style="line-height:0.7rem;">
         <div class="icon iconfont icon-erji" style="height:50%;font-size:0.6rem;"></div>
         <span>客服</span>
       </li>
