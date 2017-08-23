@@ -25,7 +25,7 @@
       <div class="login-item">
         <i class="icon iconfont icon-suo"></i>
         <label>密&nbsp;&nbsp;&nbsp;&nbsp;码</label>
-        <input type="text" value="" v-model="pwd" placeholder="请输入密码"/>
+        <input type="password" value="" v-model="pwd" placeholder="请输入密码"/>
       </div>
     </div>
     <div class="container text-center">
