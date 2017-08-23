@@ -47,8 +47,110 @@ export default {
     },
 
     callQQ(){
-      let url = "tencent://message/?Menu=yes&amp;amp;uin=1919991722&amp;amp;Service=58&amp;amp;SigT=A7F6FEA02730C988560E6A29DD620C36E5D02A3C50894BFDDFA9AE24C72EA4E656447195EDF21AA25E56C81415A4E3E06394A554DD64F3F1A382F9455BCE1C9214192773F8AF6EBF516F0E7092D08806B703D054DC2F56A1F65106C78DF1021C883D86C37678EE2EDB615B9954A338A2B2CD7A840089AB4E&amp;amp;SigU=30E5D5233A443AB2727689328A4863A4534880EE96161430D2EA5140D343AB27F9CE70D1273A9F87C0C4EA780476BBB4EB0CD74D567304A9E32DB62FCEABADF3D6133AE3F86FDB82";
-      window.location.href = url;
+      var type = undefined;
+      var param = "";
+      var sid = 2;
+      var rawuin = '571014594';
+      var qsig = "undefined";
+      var QQApi = {
+          openURL: function(url){
+              var i = document.createElement('iframe');
+              i.style.display = 'none';
+              i.onload = function() { i.parentNode.removeChild(i); };
+              i.src = url;
+              document.body.appendChild(i);
+
+              var returnValue = QQApi.__RETURN_VALUE;
+              QQApi.__RETURN_VALUE = undefined;
+              return returnValue;
+          },
+
+          isAppInstalled: function(scheme) {
+              var parameters = {'scheme':scheme};
+              var r = QQApi.openURL('jsbridge://app/isInstalled_?p=' + encodeURIComponent(JSON.stringify(parameters)));
+              return r ? r.result : null;
+          },
+
+          isQQWebView: function(){
+              return QQApi.isAppInstalled('mqq') == true;
+          },
+
+          __RETURN_VALUE: undefined
+      };
+
+      var usa=navigator.userAgent;
+      var p;
+      var mobile_q_jump = {
+          android:"https://play.google.com/store/apps/details?id=com.tencent.mobileqq",
+          ios:"itms-apps://itunes.apple.com/cn/app/qq-2011/id444934666?mt=8",
+          winphone:"http://www.windowsphone.com/zh-cn/store/app/qq/b45f0a5f-13d8-422b-9be5-c750af531762",
+          pc:"http://mobile.qq.com/index.html"
+      };
+      var isMQ = 0;
+      if(typeof type == "undefined") type = 1;
+      if(usa.indexOf("Android")>-1){
+          p = "android";
+      }
+      else if(usa.indexOf("iPhone")>-1 || usa.indexOf("iPad")>-1 || usa.indexOf("iPod")>-1){
+          p = "ios";
+      }
+      else if(usa.indexOf("Windows Phone") > -1 || usa.indexOf("WPDesktop") > -1){
+          p = "winphone";
+      }
+      else {
+          p = "pc";
+      }
+      if(p == "ios"){
+          //防止循环
+          if(history.pushState)
+              history.pushState({},"t","#");
+          isMQ = QQApi.isQQWebView();
+          if (!isMQ){
+              var sc = document.createElement("script");
+              sc.src = "http://__.qq.com/api/qqapi.js";
+              sc.onload = function(){
+                  if(window['iOSQQApi']){
+                      isMQ =iOSQQApi.device.isMobileQQ();
+                  }
+              };
+              document.body.appendChild(sc);
+          }
+      }
+      else if(p == "pc" && qsig != "undefined"){
+          window.open(qsig,"_self");
+      }
+      if(type == 1){//手Q
+          var isSuccess = true;
+          var f = document.createElement("iframe");
+          f.style.display = "none";
+          document.body.appendChild(f);
+          f.onload = function(){
+              isSuccess = false;
+          };
+          if(p == "ios" && sid == 1){
+              f.src = "mqqapi://card/show_pslcard?src_type=internal&version=1&uin="+ rawuin +"&card_type=person&source=qrcode";
+          }
+          if(p == "ios" && sid == 2){//ios并且为群名片
+              f.src = "mqqapi://card/show_pslcard?src_type=internal&version=1&uin="+ rawuin +"&card_type=person&source=qrcode";
+          }
+          else if(p != "pc"){
+              var url = window.location.href.split("&");
+              f.src = "mqqopensdkapi://bizAgent/qm/qr?url=" + encodeURIComponent(url[0]);
+          }
+          if(p == "android" && sid == 1){
+              f.src = "mqqapi://card/show_pslcard?src_type=internal&version=1&uin="+ rawuin +"&card_type=person&source=qrcode";
+          }
+          if(p == "android" && sid == 2){//ios并且为群名片
+              f.src = "mqqapi://card/show_pslcard?src_type=internal&version=1&uin="+ rawuin +"&card_type=person&source=qrcode";
+          }
+          var now = Date.now();
+          setTimeout( function(){
+              if((p == "ios" && !isMQ && Date.now() - now < 2000) || (p == "android" && !isSuccess) || ((p == "winphone" && Date.now() - now < 2000))){
+                  var jumpUrl = mobile_q_jump[p];
+                  if(jumpUrl) window.open(jumpUrl,"_self");
+              }
+          } , 1500);
+      }
     },
 
     setVolume(){
