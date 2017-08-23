@@ -7,6 +7,8 @@ export default {
   name: 'header',
   mounted(){
     this.initData();
+
+    this.resize();
   },
   methods:{
     initData(){
@@ -50,7 +52,16 @@ export default {
       let video=['http://img.ksbbs.com/asset/Mon_1605/0ec8cc80112a2d6.mp4->video/mp4'];
 
       CKobject.embed('../../static/ckplayer/ckplayer.swf','player','ckplayer_a1','100%','100%',false,flashvars,video,params);
+    },
+
+
+    resize(){
+      window.addEventListener("onorientationchange" in window ? "orientationchange" : "resize", function(){
+        //console.log("屏幕发生变化!");
+        window.location.reload();
+      }, false);
     }
+
   }
 }
 </script>
