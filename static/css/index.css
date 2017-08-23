@@ -16,6 +16,7 @@ body{
     width:100%;
     height:100%;
     overflow:hidden;
+    padding-bottom:1.0rem;
 }
 
 .app{
@@ -31,3 +32,30 @@ body{
     text-align: center;
     font-size: 0.48rem;
 }
+
+  .app .active{
+    text-decoration:none;
+    background-color:#BD0C08;
+  }
+
+  .app .chat-tab>li{
+    height:100%;
+    padding:0 8px;
+    display:inline-block;
+    vertical-align:middle;
+  }
+
+  .app .chat-tab>li>a{
+    font-size:0.48rem;
+    color:#fff;
+    padding:5px 6px;
+  }
+
+  .app .customer{
+    position:absolute;
+    right:0;
+    top:0;
+    width:1.67rem;
+    background-color:#E8A32A;
+    color:#fff;
+  }
