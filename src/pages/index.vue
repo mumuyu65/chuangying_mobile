@@ -12,7 +12,7 @@
     </div>
     <ul class="chat-tab">
       <li><a class="active">聊天</a></li>
-      <li><a href="javascript:void(0)">专家一对一</a></li>
+      <li><a href="javascript:void(0)" @click="callQQ()">专家一对一</a></li>
       <li><a href="javascript:void(0)" @click="economics()">金融说天下</a></li>
       <li class="customer text-center" style="line-height:0.7rem;" @click="callQQ()">
         <div class="icon iconfont icon-erji" style="height:50%;font-size:0.6rem;"></div>
@@ -43,7 +43,7 @@ export default {
   },
   methods:{
     economics(){
-      alert('开发中....');
+      alert('敬请期待！');
     },
 
     callQQ(){

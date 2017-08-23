@@ -327,7 +327,7 @@ export default {
                     case 28:
                         let rcvbody_28 = data.body;
                         let data_28 = JSON.parse(JSON.stringify(rcvbody_28));
-                        console.log("进入房间后的反馈信息", data_28);
+                        //console.log("进入房间后的反馈信息", data_28);
                         if (data_28.code == 100) {
                             let roomId = data_28.data.roomid;
                             that.roomID = roomId;
@@ -406,9 +406,8 @@ export default {
         },
 
         personInformation (Data) {
-            console.log('自己在群聊中发送消息的反馈', Data);
             if(Data.code == 100){
-
+                //console.log('自己在群聊中发送消息的反馈', Data);
             }
         },
 
@@ -553,6 +552,7 @@ export default {
             let that = this;
 
             api.historyChat(params).then(function(res){
+                console.log(res.data);
                 if(res.data.Code ==3){
                     let templeObj = res.data.Data;
 
