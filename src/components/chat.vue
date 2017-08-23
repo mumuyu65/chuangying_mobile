@@ -518,6 +518,8 @@ export default {
 
             let imgArr = value.indexOf("http");
 
+            let gift = value.indexOf('static');
+
             if (arr && imgArr == -1) {
                 for (let i = 0; i < arr.length; i++) {
                     for (let j in this.chatFaces) {
@@ -532,7 +534,10 @@ export default {
             }
             else if(imgArr !== -1 ){
                 value = '<img src="' + value + '"/>';
+            }else if(gift !== -1){
+                value = '<img src="' + value + '"/>';
             }
+
            //console.log(value);
 
             return value;
@@ -656,17 +661,11 @@ export default {
                     };
                 }
                 this.chatInner.push(chat_content);
-                let message=this.ImgTrans(item.imgurl).toString();
-                this.sendText(this.ImgTrans(item.imgurl));
+                this.sendText(item.imgurl);
                 this.scrollTop();
             }else{
                 alert("未登录，不可以发送图片!");
             }
-        },
-
-        //发送礼物
-        sendGift(){
-
         },
     },
 }

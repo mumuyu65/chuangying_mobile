@@ -61,10 +61,6 @@ export default {
         window.location.reload();
       }, false);
     }
-
   }
 }
 </script>
-
-<style scoped>
-</style>
