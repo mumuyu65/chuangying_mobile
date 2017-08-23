@@ -41,6 +41,9 @@ export default {
       volume:true,
     }
   },
+  mounted(){
+    this.resize();
+  },
   methods:{
     economics(){
       alert('敬请期待！');
@@ -165,6 +168,12 @@ export default {
 
     goToLogin(){
       window.location.replace('#/login');
+    },
+
+    resize(){
+      window.addEventListener("onorientationchange" in window,function(){
+        window.location.reload();
+      }, false);
     }
   }
 }

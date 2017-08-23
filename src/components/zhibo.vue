@@ -7,8 +7,6 @@ export default {
   name: 'header',
   mounted(){
     this.initData();
-
-    this.resize();
   },
   methods:{
     initData(){
@@ -54,13 +52,6 @@ export default {
       CKobject.embed('../../static/ckplayer/ckplayer.swf','player','ckplayer_a1','100%','100%',false,flashvars,video,params);
     },
 
-
-    resize(){
-      window.addEventListener("onorientationchange" in window ? "orientationchange" : "resize", function(){
-        //console.log("屏幕发生变化!");
-        window.location.reload();
-      }, false);
-    }
   }
 }
 </script>
