@@ -11,8 +11,8 @@
     top: 35%;
     left: 0;
     width: 100%;
-    height: 65%;
-    background-color: rgba(0,0,0,0.6);
+    height: 45%;
+    background-color: transparent;
 }
 
 .chat .chat-inner{
@@ -39,20 +39,20 @@
     display: none;
 }
 
-.chat .chat-content{
+.chat-content{
     max-width:750px;
-    position:fixed;
+    position:absolute;
     bottom:0;
     border-top:1px solid #ececec;
     width:100%;
-    height:1.0rem;
-    line-height:1.0rem;
+    height:1.1rem;
     padding:0 5px;
     margin: 0.05rem 0;
     vertical-align: top;
+    background-color:rgba(0,0,0,0.6);
 }
 
-.chat .chat-content>input{
+.chat-content>input{
     border-radius:30px;
     outline:0;
     border: 1px solid #ccc;
@@ -62,13 +62,13 @@
     margin:0.2rem 0;
 }
 
-.chat .chat-content .list-inline{
+.chat-content .list-inline{
   display:inline-block;
   padding:0 20px;
   margin-top:5px;
 }
 
-.chat .chat-icon{
+.chat-content .chat-icon{
    width:0.8rem;
    height:0.8rem;
    border-radius:50%;
@@ -79,7 +79,7 @@
    margin: 0 0.1rem;
 }
 
-.chat .chat-icon>.iconfont{
+.chat-content .chat-icon>.iconfont{
     font-size:0.42rem;
 }
 
@@ -104,7 +104,7 @@
   display:none;
 }
 
-.chat .chat-face {
+.chat-content .chat-face {
     position: fixed;
     width: 300px;
     height:48%;
@@ -114,7 +114,7 @@
     color:#fff;
 }
 
-.chat .chat-face .chat-face-inner {
+.chat-content .chat-face .chat-face-inner {
     position: relative;
     width: 100%;
     height: 99.9%;
@@ -122,7 +122,7 @@
     background-color: #fff;
 }
 
-.chat .chat-face .chat-face-inner .chat-face-content {
+.chat-content .chat-face .chat-face-inner .chat-face-content {
     position: absolute;
     width: 100%;
     height: 100%;
