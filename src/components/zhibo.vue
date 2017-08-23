@@ -51,7 +51,6 @@ export default {
 
       CKobject.embed('../../static/ckplayer/ckplayer.swf','player','ckplayer_a1','100%','100%',false,flashvars,video,params);
     },
-
   }
 }
 </script>

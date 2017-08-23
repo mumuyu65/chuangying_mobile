@@ -1,7 +1,7 @@
 <template>
   <div class="index">
     <zhibo></zhibo>
-    <div style="position:absolute; top:2.50rem; right:10px; color:#fff;z-index:222;">
+    <div style="position:absolute; top:2.00rem; right:10px; color:#fff;z-index:222;">
       <ul class="list-unstyled app-icon">
       <li class="login">
         <i class="icon iconfont icon-yonghu" @click="goToLogin()"></i></li>
@@ -42,7 +42,7 @@ export default {
     }
   },
   mounted(){
-    this.resize();
+    this.screenResize();
   },
   methods:{
     economics(){
@@ -170,8 +170,9 @@ export default {
       window.location.replace('#/login');
     },
 
-    resize(){
-      window.addEventListener("onorientationchange" in window,function(){
+    screenResize(){
+      window.addEventListener("onorientationchange" in window ? "orientationchange" : "resize", function(){
+        //console.log("屏幕发生变化!");
         window.location.reload();
       }, false);
     }
