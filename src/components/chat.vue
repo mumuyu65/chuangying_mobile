@@ -16,7 +16,7 @@
             </div>
         </div>
     </div>
-    <div class="chat-content">
+    <div class="chat-content" id="chat_content">
         <input v-model="chatContent" placeholder="输入聊天内容" @keyup.enter="sendContent()"/>
         <ol class="list-inline">
             <li class="chat-icon" @click="toggleImg()"><i class="icon iconfont icon-img" ></i></li>
