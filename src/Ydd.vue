@@ -8,26 +8,14 @@
 import { mapGetters } from 'vuex'
 export default {
   name: 'ydd',
-  data(){
-    return{
-      volume:true,
-    }
-  },
-  methods:{
-    setVolume(){
-      this.volume = ! this.volume;
-      CKobject.getObjectById('ckplayer_a1').changeVolume('0');
-    },
-
-    changeVolume(){
-      this.volume = ! this.volume;
-      CKobject.getObjectById('ckplayer_a1').changeVolume('100');
-    },
-
-    goToLogin(){
-      this.appIcon = !this.appIcon;
-      window.location.replace('#/login');
-    }
+  mounted(){
+    if(document.documentElement.scrollHeight <= document.documentElement.clientHeight) {
+      bodyTag = document.getElementsByTagName('body')[0];
+      bodyTag.style.height = document.documentElement.clientWidth / screen.width * screen.height + 'px';
+      }
+      setTimeout(function() {
+      window.scrollTo(0, 1)
+      }, 0);
   }
 }
 </script>
