@@ -39,8 +39,6 @@ export default {
   },
   mounted(){
     this.screenResize();
-    document.body.onfocus();
-    window.body.onfocus();
   },
   methods:{
     economics(){
