@@ -9,13 +9,8 @@ import { mapGetters } from 'vuex'
 export default {
   name: 'ydd',
   mounted(){
-    if(document.body.scrollHeight <= document.body.clientHeight) {
-      let bodyTag = document.getElementsByTagName('body')[0];
-      bodyTag.style.height = document.body.clientWidth / screen.width * screen.height + 'px';
-      }
-      setTimeout(function() {
-        window.scrollTo(0, 1)
-      }, 0);
+    $("body").css("height",document.body.clientHeight);
+    $("body").css("oveflow","hidden");
   }
 }
 </script>
