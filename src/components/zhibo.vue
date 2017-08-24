@@ -98,8 +98,8 @@ export default {
             coverpic: coverpic || {style:'cover', src:'//vodplayerinfo-10005041.file.myqcloud.com/3035579109/vod_paster_pause/paster_pause1469013308.jpg'},
             autoplay: true,
             live: live,
-            width : width,
-            height : height
+            width : width || '100%',
+            height : height || '5.56rem'
         };
 
         var player = new TcPlayer('video-container', this.VideoOption);
