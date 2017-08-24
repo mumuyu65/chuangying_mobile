@@ -53,9 +53,11 @@ export default {
       let that = this;
       response.then(function(res){
           if(res.data.Code ==3){
-            window.location.replace("#/");
+            window.location.href="#/";
 
             $.cookie('mobile-user',JSON.stringify(res.data.Data));
+
+            that.$store.dispatch("changeLogin",true);
 
           }else{
             alert(res.data.Msg);

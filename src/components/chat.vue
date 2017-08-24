@@ -90,6 +90,12 @@ export default {
           {id:8,imgurl:'../../static/images/gifts/zhuanshi.png'}],
         }
     },
+    computed:mapGetters({
+      isLogin: 'getLogin',
+    }),
+    watch:{
+        isLogin:'Login',
+    },
     mounted (){
         this.initChat();   //判断是否登录
         $("#chat_content").css("bottom",'0rem');
@@ -161,12 +167,33 @@ export default {
                     }).catch(function(err){
                         console.log(err);
                     });
+
+                    //聊天图片
+                    api.chatImage().then(function(res){
+                        if(res.data.Code ==3){
+                            that.templeChatImgs = res.data.Data;
+                            that.changeImgTab(that.chatImgTitle[0]);
+                        }else{
+                            alert("加载聊天图片不成功！");
+                        }
+                    }).catch(function(err){
+                        console.log(err);
+                    });
                 }else{
                     this.initFace();
+                    console.log(JSON.parse($.cookie("mobile-user")).Flag);
                 }
             }
             else{
                  this.initFace();  //初始化图片
+            }
+        },
+
+        Login(){
+            if(this.isLogin){
+                console.log("登陆成功！");
+            }else{
+               console.log("尚未登陆成功！");
             }
         },
 
