@@ -92,6 +92,8 @@ export default {
     },
     mounted (){
         this.initChat();   //判断是否登录
+
+        console.log(document.body.clientHeight);
     },
     methods:{
         //聊天图标
