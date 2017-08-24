@@ -92,8 +92,7 @@ export default {
     },
     mounted (){
         this.initChat();   //判断是否登录
-
-        console.log(document.body.clientHeight);
+        document.getElementById("#chat_content").style.bottom = '1.88rem';
     },
     methods:{
         //聊天图标

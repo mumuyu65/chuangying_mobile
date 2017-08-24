@@ -121,15 +121,13 @@ export default {
 
             this.VideoOption.height = '5.56rem';
 
-            document.getElementById("#chat_content").style.bottom = '1.88rem';
+
       }
       if (window.orientation === 90 || window.orientation === -90 ){
 
             this.VideoOption.width = '100%';
 
             this.VideoOption.height = '100%';
-
-            document.getElementById("#chat_content").style.bottom = '1.88rem';
       }
     }
   }
