@@ -1,7 +1,7 @@
 <template>
   <div class="index">
     <zhibo></zhibo>
-    <div style="position:absolute; top:2.00rem; right:10px; color:#fff;z-index:222;">
+    <div style="position:absolute; top:2.00rem; right:10px; color:#fff;z-index:9999;">
       <ul class="list-unstyled app-icon">
         <li class="login"><i class="icon iconfont icon-yonghu" @click="goToLogin()"></i></li>
       </ul>
