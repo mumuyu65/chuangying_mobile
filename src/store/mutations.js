@@ -2,11 +2,7 @@
  * Created by yangyangyu on 17/6/26.
  */
 export default {
-    CHANGE_LOGINWAY(state, loginway) {
-            state.loginway = loginway
-        },
-
-        CHANGE_USER(state, value) {
+    CHANGE_USER(state, value) {
             state.user = value
         },
 
@@ -33,4 +29,8 @@ export default {
         CHANGE_FLAG(state, value) {
             state.userFlag = value;
         },
+
+        CHANGE_ORIENTATION(state, value) {
+            state.orientation = value;
+        }
 }

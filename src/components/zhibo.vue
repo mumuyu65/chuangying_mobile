@@ -1,14 +1,28 @@
 <template>
-<div class="zhibo clearfix" id="player"></div>
+<div class="zhibo clearfix" id="video-container"></div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
   name: 'header',
+  data(){
+    return{
+      VideoOption:{},
+    }
+  },
   mounted(){
     this.initData();
   },
+  computed: mapGetters({
+      orientation: 'getOrientation',
+  }),
+  watch:{
+    orientation:'changeOrientation',
+  },
   methods:{
+    /*
     initData(){
       let flashvars={
             f:'http://img.ksbbs.com/asset/Mon_1605/0ec8cc80112a2d6.mp4',//视频地址
@@ -51,6 +65,69 @@ export default {
 
       CKobject.embed('../../static/ckplayer/ckplayer.swf','player','ckplayer_a1','100%','100%',false,flashvars,video,params);
     },
+
+    */
+
+    initData(){
+        var rtmp = this.getParams('rtmp'),
+            flv  = this.getParams('flv'),
+            m3u8 = this.getParams('m3u8'),
+            mp4  = this.getParams('mp4'),
+            live = (this.getParams('live') == 'true' ? true : false),
+            coverpic = this.getParams('coverpic'),
+            width = this.getParams('width'),
+            height = this.getParams('height'),
+            autoplay = (this.getParams('autoplay') == 'true' ? true : false);
+        /**
+         * 视频类型播放优先级
+         * mobile ：m3u8>mp4
+         * PC ：RTMP>flv>m3u8>mp4
+         */
+
+        /**
+         * 属性说明：
+         *
+         * coverpic  {Object|String} src:图片地址，style：default 居中1:1显示 stretch 拉伸铺满，图片可能会变形 cover 等比横向铺满，图片某些部分可能无法显示在区域内
+         *  封面在 ios10 暂时无法生效。
+         */
+        this.VideoOption = {
+            rtmp: rtmp,
+            flv: flv ,
+            m3u8: m3u8 || 'http://1251132611.vod2.myqcloud.com/4126dd3evodtransgzp1251132611/8a592f8b9031868222950257296/f0.f230.m3u8',
+            mp4 : mp4 || 'http://1251132611.vod2.myqcloud.com/4126dd3evodtransgzp1251132611/8a592f8b9031868222950257296/f0.f40.mp4',
+            coverpic: coverpic || {style:'cover', src:'//vodplayerinfo-10005041.file.myqcloud.com/3035579109/vod_paster_pause/paster_pause1469013308.jpg'},
+            autoplay: true,
+            live: live,
+            width : width,
+            height : height
+        };
+
+        var player = new TcPlayer('video-container', this.VideoOption);
+        window.qcplayer  = player;
+    },
+
+    getParams(name) {
+      var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');
+      var r = window.location.search.substr(1).match(reg);
+      if (r != null) {
+          return decodeURIComponent(r[2]);
+      }
+      return null;
+    },
+
+    changeOrientation(){
+      if (window.orientation === 180 || window.orientation === 0) {
+            this.VideoOption.width = '100%';
+
+            this.VideoOption.height = '5.56rem';
+      }
+      if (window.orientation === 90 || window.orientation === -90 ){
+
+            this.VideoOption.width = '100%';
+
+            this.VideoOption.height = '100%';
+      }
+    }
   }
 }
 </script>

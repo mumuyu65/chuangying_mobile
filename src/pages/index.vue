@@ -3,11 +3,7 @@
     <zhibo></zhibo>
     <div style="position:absolute; top:2.00rem; right:10px; color:#fff;z-index:222;">
       <ul class="list-unstyled app-icon">
-      <li class="login">
-        <i class="icon iconfont icon-yonghu" @click="goToLogin()"></i></li>
-        <li><i class="icon iconfont icon-yuyin" @click="setVolume()" v-if="volume"></i>
-            <i class="icon iconfont icon-yuyin" @click="changeVolume()" v-if="!volume"></i>
-        </li>
+        <li class="login"><i class="icon iconfont icon-yonghu" @click="goToLogin()"></i></li>
       </ul>
     </div>
     <ul class="chat-tab">
@@ -171,9 +167,9 @@ export default {
     },
 
     screenResize(){
+      let that = this;
       window.addEventListener("onorientationchange" in window ? "orientationchange" : "resize", function(){
-        //console.log("屏幕发生变化!");
-        window.location.reload();
+        that.$store.dispatch("changeOrientation",true);
       }, false);
     }
   }

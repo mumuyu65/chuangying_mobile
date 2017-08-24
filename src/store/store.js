@@ -12,7 +12,8 @@ Vue.use(Vuex)
 
 const state = {
     isLogin: false,
-    user: {}
+    user: {},
+    orientation: false,
 };
 
 export default new Vuex.Store({

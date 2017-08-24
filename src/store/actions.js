@@ -13,3 +13,9 @@ export const changeUser = ({
 }, value) => {
     commit('CHANGE_USER', value)
 }
+
+export const changeOrientation = ({
+    commit
+}, value) => {
+    commit('CHANGE_ORIENTATION', value)
+}
