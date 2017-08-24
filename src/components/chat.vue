@@ -92,7 +92,7 @@ export default {
     },
     mounted (){
         this.initChat();   //判断是否登录
-        $("#chat_content").css("bottom",'1.0rem');
+        $("#chat_content").css("bottom",'0.5rem');
     },
     methods:{
         //聊天图标
