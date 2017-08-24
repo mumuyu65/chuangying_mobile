@@ -99,6 +99,15 @@ export default {
     mounted (){
         this.initChat();   //判断是否登录
         $("#chat_content").css("bottom",'0rem');
+
+        //微信内置浏览器浏览H5页面弹出的键盘遮盖文本框的解决办法
+        window.addEventListener("resize", function () {
+            if (document.activeElement.tagName == "INPUT" || document.activeElement.tagName == "TEXTAREA") {
+            window.setTimeout(function () {
+                document.activeElement.scrollIntoViewIfNeeded();
+                }, 0);
+            }
+        })
     },
     methods:{
         //聊天图标
