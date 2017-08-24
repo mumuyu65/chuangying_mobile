@@ -121,7 +121,7 @@ export default {
 
             this.VideoOption.height = '5.56rem';
 
-            $("#chat_content").css("bottom",'0.9rem');
+           // $("#chat_content").css("bottom",'0rem');
 
       }
       if (window.orientation === 90 || window.orientation === -90 ){
@@ -130,7 +130,7 @@ export default {
 
             this.VideoOption.height = '100%';
 
-            $("#chat_content").css("bottom",'1.88rem');
+            //$("#chat_content").css("bottom",'1.0rem');
       }
     }
   }
